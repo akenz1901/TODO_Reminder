@@ -25,7 +25,7 @@ def todo_notifier():
     message = get_to_do()
     name = "TODO"
     notification_toaster = ToastNotifier()
-    time_calculator(10)
+    time_calculator(60)
     notification_toaster.show_toast(name, message)
 
 
