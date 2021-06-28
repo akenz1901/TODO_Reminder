@@ -1,22 +1,32 @@
 from win10toast import ToastNotifier
+import time
 
-time = 1
 list_of_to_do = []
+
+predicted_time = 1 * 10
+
+
+def toDoInterFace():
+    take = str(input("Enter A TODO: "))
+    return take
 
 
 def get_to_do():
-    message = str(input("Enter A TODO: "))
-    list_of_to_do.append(message)
+    list_of_to_do.append(toDoInterFace())
     for i in list_of_to_do:
         return i
 
 
-def notifier():
-    name = "TODO"
-    message = get_to_do()
-    notification_toaster = ToastNotifier()
+def time_calculator(minutes):
+    return time.sleep(minutes)
 
+
+def todo_notifier():
+    message = get_to_do()
+    name = "TODO"
+    notification_toaster = ToastNotifier()
+    time_calculator(10)
     notification_toaster.show_toast(name, message)
 
 
-notifier()
+todo_notifier()
