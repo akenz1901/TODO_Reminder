@@ -49,15 +49,15 @@ def new_to_app():
     take = str(input("Enter A TODO: "))
     while True:
         store_name_and_message(name, take)
-        # thread_for_each_todo.append(store_reminder_time())
+       # thread_for_each_todo.append(store_reminder_time())
         store_todo()
         if store_todo().capitalize().startswith("Y"):
             print("You can store as much as you desire")
             continue
-        elif store_todo().capitalize().startswith("N"):
+        if store_todo().capitalize().startswith("N"):
             break
     print("Saving........")
-    time_calculator(seconds=10)
+    time_calculator(seconds=7)
     print("Saved!")
     for t in thread_for_each_todo:
         time_calculator(seconds=t)
