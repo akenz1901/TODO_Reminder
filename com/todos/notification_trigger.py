@@ -1,11 +1,12 @@
 from win10toast import ToastNotifier
 import time
 
-list_of_to_do = {""}
+list_of_to_do = {}
+time_accumulator = []
 
 
 def store_name_and_message(name: str, take: str):
-    list_of_to_do.update(name, take)
+    list_of_to_do[name] = take
 
 
 def getListOfToDo():
@@ -16,8 +17,15 @@ def getListOfToDo():
 #     for i in list_of_to_do:
 #         return i
 
+def store_time(seconds):
+    time_accumulator.append(seconds)
 
-def time_calculator(seconds):
+
+def get_times():
+    return time_accumulator
+
+
+def delay_alert_time(seconds):
     return time.sleep(seconds)
 
 
@@ -41,34 +49,33 @@ def store_reminder_time():
     return tem_time
 
 
+def store_attributes():
+    name = str(input("Enter a TODO name:"))
+    todo = str(input("Enter a TODO:"))
+    store_name_and_message(name, todo)
+
+
+def time_management():
+    seconds = int(input("Enter how many seconds you want to get an alert: "))
+    store_time(seconds)
+
+
 def new_to_app():
     notification_toaster = ToastNotifier()
-    thread_for_each_todo = []
-    print("Hey Welcome")
-    name = str(input("Enter to name: "))
-    take = str(input("Enter A TODO: "))
+    store_attributes()
+    time_management()
     while True:
-        store_name_and_message(name, take)
-       # thread_for_each_todo.append(store_reminder_time())
-        store_todo()
-        if store_todo().capitalize().startswith("Y"):
-            print("You can store as much as you desire")
-            continue
-        if store_todo().capitalize().startswith("N"):
+        print("Is there more TODO to add ?\n.\n.\n.\nEnter Yes if you have more todo and No if there is no more TODO")
+        decision = str(input("Or enter Y/N: "))
+        if decision.capitalize().startswith("Y"):
+            store_attributes()
+            time_management()
+        else:
             break
-    print("Saving........")
-    time_calculator(seconds=7)
-    print("Saved!")
-    for t in thread_for_each_todo:
-        time_calculator(seconds=t)
-        i = 0
-        ii = 1
-        for n, m in getListOfToDo():
-            notification_toaster.show_toast(n, m)
-            i += 1
-            if i is ii:
-                ii += 1
-                break
+    for name in getListOfToDo():
+        for sc in get_times():
+            delay_alert_time(sc)
+            notification_toaster.show_toast(name, getListOfToDo().get(name))
 
 
 new_to_app()
