@@ -1,6 +1,6 @@
+import os
 from win10toast import ToastNotifier
 import time
-
 list_of_to_do = {}
 time_accumulator = []
 
