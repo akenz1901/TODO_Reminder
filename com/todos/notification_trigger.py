@@ -1,6 +1,7 @@
 import os
 from win10toast import ToastNotifier
 import time
+
 list_of_to_do = {}
 time_accumulator = []
 
@@ -16,7 +17,6 @@ def getListOfToDo():
 # def get_to_do():
 #     for i in list_of_to_do:
 #         return i
-
 def store_time(seconds):
     time_accumulator.append(seconds)
 
